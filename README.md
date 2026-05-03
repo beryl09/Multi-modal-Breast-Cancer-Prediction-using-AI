@@ -1,5 +1,10 @@
 Project Overview: This repository implements machine learning pipelines to predict breast cancer receptor status (ER, PR, HER2) from multi-modal data. We combine magnetic resonance imaging (MRI) and clinical/pathological features from the Duke Breast Cancer dataset to develop and compare models. The goal is to evaluate single-modality (image-only, clinical-only) and hybrid (late fusion) models, and provide interpretable insights into feature importance.
 
+<img width="936" height="530" alt="image" src="https://github.com/user-attachments/assets/abc7bf47-17dc-42ee-80d5-6321532357df" />
+
+
+
+
 Dataset: We use the Duke Breast Cancer MRI dataset (a subset from The Cancer Imaging Archive). This is a single-institution, retrospective collection of 922 biopsy-confirmed invasive breast cancer patients with the following data:
 
 Pre-operative dynamic contrast-enhanced (DCE) MRI volumes.
@@ -85,25 +90,25 @@ Copy
 python Explainability.py --model results/hybrid/checkpoint.pth --data test_data/ --out_dir results/hybrid/explain
 This script will produce SHAP value plots (for clinical inputs) and Grad-CAM heatmaps (for MRI inputs) for sample test cases.
 
-GPU Job (example): Edit and submit gpu_job.sh via sbatch gpu_job.sh (for SLURM) to run a training session on an HPC cluster.
+GPU Job **(example)**: Edit and submit gpu_job.sh via sbatch gpu_job.sh (for SLURM) to run a training session on an HPC cluster.
 
-Expected Outputs:
+# Expected Outputs:
 
 Trained Model Files: Checkpoints saved (e.g., *.pth) for each trained model.
 Metrics: Printed classification reports (accuracy, precision, recall, F1, AUC) in console or logs.
 ROC/Confusion Matrices: Plotted to results/ directory.
 Explainability Plots: SHAP summary plots and Grad-CAM visualizations (PNG files) in results/<model>/explain/.
-Reproducibility:
+# Reproducibility:
 
 Ensure fixed random seeds for train/val splits (configurable in main.py).
 Use --split seed 42 or similar flags to replicate data splits and results.
 We recommend performing k-fold cross-validation for robust estimates.
-License & Citation:
+# License & Citation:
 This code is released under the MIT License. If you use it in your work, please cite this repository and the Duke Breast Cancer MRI dataset as follows:
 
 Duke Breast Cancer MRI dataset: [“Duke-Breast-Cancer-MRI,” The Cancer Imaging Archive (TCIA), https://wiki.cancerimagingarchive.net/pages/viewpage.action?pageId=70226903].
 This repository: Multi-modal Breast Cancer Prediction using AI (GitHub, Year).
-Troubleshooting:
+# Troubleshooting:
 
 Out of Memory (OOM) Errors: Reduce batch size or use a smaller network. Ensure CUDA is visible (torch.cuda.is_available() should return True).
 Package Import Errors: Double-check requirements.txt and Python version (3.8+). The code may use torchvision.transforms and sklearn utilities.
